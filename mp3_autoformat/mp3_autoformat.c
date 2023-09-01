@@ -26,18 +26,18 @@ int main(int argc, char *const argv[argc]) {
   }
   
   char *version_argv[3] = {
-    "id3v2",
-    "--version",
+    "id3tool",
+    "-v",
     NULL,
   };
   
   if (shell_run(version_argv)) {
-    printf("Error: id3v2 not installed.\n");
+    printf("Error: id3tool not installed.\n");
     exit(-1);
   }
   
   char *format_argv[7] = {
-    "id3v2",
+    "id3tool",
     "-a", NULL,
     "-t", NULL,
     NULL,
@@ -95,6 +95,8 @@ int main(int argc, char *const argv[argc]) {
     format_argv[2] = artist;
     format_argv[4] = title;
     format_argv[5] = argv[i];
+    
+    printf("- '%s': '%s'\n", artist, title);
     
     if (shell_run(format_argv)) {
       printf("FAIL '%s'\n", argv[i]);
